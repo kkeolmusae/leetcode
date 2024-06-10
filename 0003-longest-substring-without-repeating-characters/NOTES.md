@@ -43,3 +43,4 @@ class Solution:
       return max_len
 ```
 
+그래서 다른코드 보고 다시 풀었는데 기가 막힘. 
