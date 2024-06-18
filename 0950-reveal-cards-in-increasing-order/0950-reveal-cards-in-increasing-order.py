@@ -1,21 +1,16 @@
 from typing import List
 from collections import deque
 
-
 class Solution:
     def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
-        deck_size = len(deck)
-        if deck_size == 1:
-            return deck
+        deck.sort()  # 1. 덱을 오름차순으로 정렬
+        q = deque(range(len(deck)))  # 2. 인덱스를 저장하는 덱 초기화
         
-        deck.sort() # 오름차순 정렬
-        q = deque()
+        result = [0] * len(deck)  # 결과를 저장할 리스트 초기화
         
-        while deck:
-            if len(q) == 0:
-                q.append(deck.pop())
-                
-            q.appendleft(q.pop())
-            q.appendleft(deck.pop())
+        for card in deck:  # 3. 각 카드에 대해
+            result[q.popleft()] = card  # 4. 맨 위 인덱스 위치에 현재 카드 배치
+            if q:  # 5. 아직 인덱스가 남아 있다면
+                q.append(q.popleft())  # 6. 맨 위 인덱스를 맨 아래로 이동
         
-        return q
+        return result  # 7. 결과 반환
