@@ -3,8 +3,9 @@ from typing import List
 
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
-        if n == 1:
+        if n == 1: # 판사가 한명있고 시민이 없는 경우
             return n
+        
         trust_count = [0] * (n + 1)
         judge = [True] * (n + 1) # 누군가를 믿은적이 있으면 False 처리해서 판사가 아님을 표기
         
