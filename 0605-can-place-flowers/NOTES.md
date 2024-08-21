@@ -1,6 +1,7 @@
 # 풀이
 
 - LeetCode 75, Easy
+- Array / String
 - Time: 11m
 - 문제 자체는 굉장히 쉬웠는데 예외처리하느라 시간 좀 더 걸린듯
 

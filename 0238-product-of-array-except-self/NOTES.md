@@ -1,5 +1,6 @@
 # 풀이
 - LeetCode 75, Medium
+- Array / String
 - Time: x
 - 이전에 풀었던거라 리팩토링만함.
 

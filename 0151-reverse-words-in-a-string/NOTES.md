@@ -1,5 +1,6 @@
 # 풀이
 - LeetCode 75, Medium
+- Array / String
 - Time: 2m 15s
 - 쉬움. 걍 띄워쓰기로 split 하고 배열에 때려넣고 reverse 하고 join 쓰면 끝
 

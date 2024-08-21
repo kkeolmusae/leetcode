@@ -1,5 +1,6 @@
 # 풀이
 - LeetCode 75, medium
+- Array / String
 - Time: 못품 (>= 20m)
 - 코드 자체는 단순한데 이런 방법을 생각해내는게 쉽지 않을듯. 
 

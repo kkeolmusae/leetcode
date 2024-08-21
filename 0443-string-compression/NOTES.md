@@ -1,5 +1,6 @@
 # 풀이
 - LeetCode 75, Medium
+- Array / String
 - Time: 22m
 - 풀긴 했는데 좀 이상하게 품
 

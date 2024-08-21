@@ -1,5 +1,6 @@
 # 풀이
 - LeetCode 75, Easy
+- Array / String
 - Time: 5m 52s
 - 딱히 어려움은 없었음. 더 최적화할 수 있을법한데 시간초과 안날 것 같아서 그냥 함
 
