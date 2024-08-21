@@ -1,4 +1,8 @@
 # 풀이
+- LeetCode 75, Medium
+- Two Pointers
+- Time: 4m 20s
+- 지난번에 풀었던 문제인데 그냥 다시 풀어봄.
 
 ## 내 코드
 1. 좌우에서 한칸씩 중앙으로 당기면서 최대 너비를 갱신하고,
@@ -7,19 +11,21 @@
 ```py
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-      result = 0
-      l_idx = 0
-      r_idx = len(height) - 1
-      
-      # 좌우에서 
-      while l_idx < r_idx:
-        result = max(result, (r_idx - l_idx) * min(height[l_idx], height[r_idx]))
-        if height[l_idx] < height[r_idx]:
-          l_idx += 1
-        else: 
-          r_idx -= 1
-      
-      return result
+        result = 0
+        l_idx = 0
+        r_idx = len(height) - 1
+
+        while l_idx < r_idx:
+            w = r_idx - l_idx  # 가로
+            h = min(height[l_idx], height[r_idx])  # 세로
+            result = max(result, w * h)  # 최대 넓이 갱신
+
+            if height[l_idx] < height[r_idx]:  # 왼쪽이 짧으면 왼쪽꺼 이동해보기
+                l_idx += 1
+            else:  # 아니면 오른쪽꺼 이동
+                r_idx -= 1
+
+        return result
 ```
 
 ## 다른 풀이
