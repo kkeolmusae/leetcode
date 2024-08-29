@@ -1,3 +1,5 @@
 {
-  "editor.defaultFormatter": "ms-python.black-formatter"
+  "editor.defaultFormatter": "ms-python.black-formatter",
+  "html.format.wrapLineLength": 200,
+  "git.inputValidationSubjectLength": 50
 }
