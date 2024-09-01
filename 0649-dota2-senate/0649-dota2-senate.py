@@ -7,9 +7,9 @@ class Solution:
             curr = queue.popleft()
             if queue and queue[0] != curr:  # 현재 상원이 다음 상원이랑 다르면
                 queue.popleft()  # 다음 상원 제거
-            elif queue:
+            elif queue:  # 현재 상원이랑 같으면
                 other = "R" if curr == "D" else "D"
-                if other in queue:
+                if other in queue:  # 뒤에 있는 첫번째 상대 상원 삭제
                     queue.remove(other)
             current_senator = curr  # 현재 상원 업데이트
             queue.append(curr)  # 제일 뒤 라운드로
