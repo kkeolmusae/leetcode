@@ -1,7 +1,7 @@
 # 풀이
 - LeetCode 75, Medium
 - Heap / Priority Queue
-- Time: 못품
+- Time: X
 - 어려웠음. 처음에 heapq 어떻게 써야할지 모르겠어서 combinations 썼다가 메모리 초과 발생하고, 고민하다가 결국 해설지봄.
 
 ## 내 풀이 (해설지 보고 이해한 다음에 다시 품)
