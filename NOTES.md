@@ -1,5 +1,5 @@
 # 풀이
-- LeetCode 75, Easy
+- Medium
 - Array / String
 - Time: 
 - (문제풀면서 느낀점 혹은 접근 방법)
@@ -18,5 +18,13 @@
 ```
 
 ### Approach 3:
+```py
+```
+
+### Approach 4:
+```py
+```
+
+### Approach 5:
 ```py
 ```
