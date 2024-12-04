@@ -1,21 +1,24 @@
 # 풀이
+- Difficulty:  Easy
+- Topic:  Array / String
+- Elapsed Time:  2m
+- Status:  O (2 times)
+- Memo: 새 리트코드 계정에서 이 문제가 안풀려 있어서 새로 풀었다. 
+
 ## 내 풀이
-그냥 문제 그대로 nums1 에 nums2를 합치고 sort 했다. 
-- 시간복잡도: O((n+m)log(n+m))
+그냥 문제 그대로 nums1 에 nums2를 합치고 sort 했다. m과 n을 적절히 활용하지 못해서 약간 아쉬웠다. 
 ```py
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        """
-        Do not return anything, modify nums1 in-place instead.
-        """
-        for idx in range(n):
-            nums1[idx + m] = nums2[idx]
-        
-        nums1.sort()    
+        i = 0
+        for idx in range(m, len(nums1)):
+            nums1[idx] = nums2[i]
+            i += 1
+        nums1.sort()  
 ``` 
 
 ## 다른 풀이
-### Three Pointers (Start From the Beginning)
+### Approach 1: Three Pointers (Start From the Beginning)
 - 시간복잡도: O(n+m)
 ```py
 class Solution:
@@ -41,7 +44,7 @@ class Solution:
                 p2 += 1
 ```
 
-### Three Pointers (Start From the End)
+### Approach 2: Three Pointers (Start From the End)
 앞에 방식이랑 반대로 풀이
 ```py
 class Solution:

@@ -1,20 +1,24 @@
 ​# 풀이
-- LeetCode 75, Medium
-- Heap / Priority Queue
-- Time: 0m
-- 예전에 풀었던거라 주석만 추가함
+- Difficulty: Medium
+- Topic:  Heap / Priority Queue
+- Elapsed Time:  2m
+- Status:  O (3 times)
+- Time: 2m
+- Memo: 세번째 푸는거라 어려움 없이 풀었음
 
 ## 내 풀이
 ```py
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         q = []
-        for num in nums:
-            heapq.heappush(q, num)  # 일단 넣고
 
-            if len(q) > k:  # k개 보다 크면 pop해서 k개 까지만 넣어두면
+        for num in nums:
+            heapq.heappush(q, num)
+
+            if len(q) > k:
                 heapq.heappop(q)
-        return q[0]  # q[0]에 있는 값이 k번째로 큰 값
+
+        return heapq.heappop(q)
 ```
 
 ## 다른 풀이

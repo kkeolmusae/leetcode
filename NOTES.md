@@ -1,8 +1,9 @@
 # 풀이
-- Medium
-- Array / String
-- Time: 
-- (문제풀면서 느낀점 혹은 접근 방법)
+- Difficulty:  Easy / Medium / Hard
+- Topic:  Heap / Priority Queue
+- Elapsed Time:  2m
+- Status:  O (3 times) / X
+- Memo:
 
 ## 내 풀이
 ```py
