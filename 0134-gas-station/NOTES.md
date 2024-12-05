@@ -1,67 +1,61 @@
-## Notes
-내 풀이: cost 가 가장 큰 것의 다음 인덱스부터 계산해보고 0보다 작으면 -1을 리턴하고 0보다 크면 그 인덱스를 리턴하는 방법으로 풀려고 했는데 테스트 케이스에서 틀림. (접근 방식이 잘못됨)
+# 풀이
+- Difficulty:  Medium
+- Topic:  Array / String
+- Elapsed Time:  10m
+- Status:  O (1 times)
+- Memo: 이전에 못풀었던 문제인데 해설을 좀 외워서 푼 느낌
 
+## 내 풀이
 ```py
-from typing import List
-
-
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        n = len(cost)
-        max_gas = 0
-        start_idx = 0
-
-        for idx in range(n):
-            if max_gas < cost[idx]:
-                max_gas = cost[idx]
-                start_idx = idx
-
-        start_idx = (start_idx + 1) % n
-
-        remains = gas[start_idx]
-        prev_cost = cost[start_idx]
-        for idx in range(start_idx + 1, n + start_idx):
-            ridx = idx % n
-            remains = remains - prev_cost
-
-            if remains <= 0:
-                return -1
-
-            remains += gas[ridx]
-            prev_cost = cost[ridx]
-
-        remains = remains - cost[(start_idx + n - 1) % n]
-
-        if remains < 0:
-            return -1
-
-        return start_idx
-```
-
-#### 맞는 풀이
-```py
-from typing import List
-
-
-class Solution:
-    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        total_gas = 0
-        curr_gas = 0
+        total = 0
+        curr = 0
         result = 0
 
         for idx in range(len(gas)):
-            total_gas += gas[idx] - cost[idx]
-            curr_gas += gas[idx] - cost[idx]
+            used_gas = gas[idx] - cost[idx]
+            total += used_gas
+            curr += used_gas
 
-            if curr_gas < 0:
-                curr_gas = 0
-                result = idx + 1
+            # curr 이 음수면 다음 지역으로 못간다는거임
+            if curr < 0:
+                curr = 0  # 초기화하고
+                result = idx + 1  # 현재 위치에서는 안되는거니깐 다음 위치로 설정
 
-        if total_gas >= 0:
+        if total >= 0:  # total이 양수면 모든 지역 다 갈 수 있다는거임
             return result
         return -1
-```
-total_gas 랑 curr_gas로 나눠서 curr_gas 가 음수면 다음 스테이션으로 못간다는거라 해당 구간은 패스하고 curr_gas 초기화하고 시작idx (answer)를 +1 해봄. 
 
-total_gas가 음수면 어디서 시작하던 한바퀴 못돈다는거라서 `-1`을 리턴하고,
-양수면 시작idx 부터 시작하면 한바퀴돌 수 있다는 거라 시작 idx 리턴함
+```
+
+## 다른 풀이
+### Approach
+```py
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        # 전체 연료 이득을 나타내는 변수
+        total_gain = 0
+        
+        # 현재 경로에서의 연료 이득을 추적하는 변수
+        curr_gain = 0
+        
+        # 가능한 시작 지점을 저장하는 변수
+        answer = 0
+
+        # 각 주유소를 순회하며 계산
+        for i in range(len(gas)):
+            # 각 주유소에서 얻는 연료 이득 (gain[i] = gas[i] - cost[i])
+            total_gain += gas[i] - cost[i]
+            curr_gain += gas[i] - cost[i]
+
+            # 만약 현재 연료 이득이 음수가 된다면
+            # 현재 경로에서는 순환 불가능하므로 초기화 후 다음 주유소를 시작 지점으로 설정
+            if curr_gain < 0:
+                curr_gain = 0
+                answer = i + 1
+
+        # 전체 연료 이득이 0 이상이면 순환 가능, 아니라면 순환 불가능
+        return answer if total_gain >= 0 else -1
+
+```

@@ -3,7 +3,7 @@
 ## Array / String
 - [X] [Easy] Merge Sorted Array - (2)
 - [X] [Easy] Remove Element
-- [ ] [Easy] Remove Duplicates from Sorted Array
+- [X] [Easy] Remove Duplicates from Sorted Array
 - [X] [Medium] Remove Duplicates from Sorted Array II - (2)
 - [ ] [Easy] Majority Element
 - [X] [Medium] Rotate Array - (2)
@@ -14,7 +14,7 @@
 - [ ] [Medium] H-Index
 - [ ] [Medium] Insert Delete GetRandom O(1)
 - [ ] [Medium] Product of Array Except Self
-- [ ] [Medium] Gas Station
+- [X] [Medium] Gas Station
 - [ ] [Hard] Candy
 - [ ] [Hard] Trapping Rain Water
 - [ ] [Easy] Roman to Integer
