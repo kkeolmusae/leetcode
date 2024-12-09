@@ -1,13 +1,15 @@
 # Top Interview 150
-다 풀어보자 (이전에 풀었던거 또 풀수 있음)
+- 다 풀어보자 (이전에 풀었던거 또 풀수 있음)
+- Easy: 40 / Medium: 92 / Hard: 18
+- 
 ## Array / String
 - [X] [Easy] Merge Sorted Array - (2)
 - [X] [Easy] Remove Element
 - [X] [Easy] Remove Duplicates from Sorted Array
 - [X] [Medium] Remove Duplicates from Sorted Array II - (2)
-- [ ] [Easy] Majority Element
+- [X] [Easy] Majority Element
 - [X] [Medium] Rotate Array - (2)
-- [ ] [Easy] Best Time to Buy and Sell Stock
+- [X] [Easy] Best Time to Buy and Sell Stock - (2)
 - [ ] [Medium] Best Time to Buy and Sell Stock II
 - [ ] [Medium] Jump Game
 - [ ] [Medium] Jump Game II
