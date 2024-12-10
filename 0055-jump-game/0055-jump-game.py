@@ -1,15 +1,21 @@
-from typing import List
-
-
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        goal = len(nums) - 1  # 목적지 인덱스
 
-        # 제일 뒤에서 한칸 앞에서 부터 0번째까지 반복
-        for idx in range(goal - 1, -1, -1):
-            # idx 위치에서 최대 nums[idx] 만큼 이동했을떄 goal 이상 갈 수 있으면 도착 가능한거니깐
-            if idx + nums[idx] >= goal:
-                goal = idx
-        if goal == 0:
+        # nums 길이가 1이면 가능
+        if len(nums) == 1:
             return True
-        return False
+
+        # nums의 첫번째값이 0이면 False (nums 길이가 2이상임)
+        if nums[0] == 0:
+            return False
+
+        last_idx = len(nums) - 1  # 도달해야하는 지점
+        curr = 0  # 현재 위치
+        can_jump = nums[curr]  # 최대 점프 가능 위치
+
+        while curr <= can_jump:
+            can_jump = max(curr + nums[curr], can_jump)  # 최대 점프 가능 위치 갱신
+            if can_jump >= last_idx:  # 점프 가능하면 True
+                return True
+            curr += 1  # 다음 발판으로
+        return False  # last_idx에 도달 못한거니깐 False
