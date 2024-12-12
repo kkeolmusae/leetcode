@@ -1,34 +1,40 @@
 # 풀이
-- LeetCode 75, Medium
-- Array / String
-- Time: x
-- 이전에 풀었던거라 리팩토링만함.
+- Difficulty:  Medium
+- Topic:  Array / String
+- Elapsed Time:  5m
+- Status:  O (3 times)
+- Memo: 어쩌다 보니 3번째 풀게됨. 좀 더 쉽게 코드를 짬
 
 ## 내 풀이
 ```py
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        total = 1
-        is_zero_exist = False
+        zero_cnt = 0
+        product_except_zero = 1
+        n = len(nums)
 
         for num in nums:
             if num == 0:
-                if is_zero_exist:  # 0 개수가 2개이상이면 전체 배열이 0임.
-                    return [0] * len(nums)
-                is_zero_exist = True
+                zero_cnt += 1
             else:
-                total *= num
+                product_except_zero *= num
 
-        result = []
-        for num in nums:
-            if num == 0:  # 0이면 total 을 넣고
-                result.append(total)
-            elif is_zero_exist:  # 0이 아닌데 전체중에 0이 있으면 0을 넣고
-                result.append(0)
-            else:  # 0이 아예 없는 경우에는 total // num
-                result.append(total // num)
+        result = [0] * n
+        # 0 이 2개 이상있는 경우
+        if zero_cnt > 1:
+            return result
 
+        if zero_cnt == 1:
+            for idx in range(n):
+                num = nums[idx]
+                if num == 0:
+                    result[idx] = product_except_zero
+        else:
+            for idx in range(n):
+                num = nums[idx]
+                result[idx] = product_except_zero // num
         return result
+
 ```
 
 ## 다른 풀이
