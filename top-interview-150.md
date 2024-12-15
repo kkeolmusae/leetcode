@@ -10,22 +10,22 @@
 - [X] [Easy] Majority Element
 - [X] [Medium] Rotate Array - (2)
 - [X] [Easy] Best Time to Buy and Sell Stock - (2)
-- [ ] [Medium] Best Time to Buy and Sell Stock II
-- [ ] [Medium] Jump Game
-- [ ] [Medium] Jump Game II
+- [X] [Medium] Best Time to Buy and Sell Stock II
+- [X] [Medium] Jump Game
+- [X] [Medium] Jump Game II
 - [ ] [Medium] H-Index
-- [ ] [Medium] Insert Delete GetRandom O(1)
-- [ ] [Medium] Product of Array Except Self
+- [X] [Medium] Insert Delete GetRandom O(1)
+- [X] [Medium] Product of Array Except Self
 - [X] [Medium] Gas Station
 - [ ] [Hard] Candy
 - [ ] [Hard] Trapping Rain Water
-- [ ] [Easy] Roman to Integer
-- [ ] [Medium] Integer to Roman
-- [ ] [Easy] Length of Last Word
-- [ ] [Easy] Longest Common Prefix
-- [ ] [Medium] Reverse Words in a String
-- [ ] [Medium] Zigzag Conversion
-- [ ] [Easy] Find the Index of the First Occurrence in a String
+- [X] [Easy] Roman to Integer
+- [X] [Medium] Integer to Roman
+- [X] [Easy] Length of Last Word
+- [X] [Easy] Longest Common Prefix
+- [X] [Medium] Reverse Words in a String
+- [X] [Medium] Zigzag Conversion
+- [X] [Easy] Find the Index of the First Occurrence in a String
 - [ ] [Hard] Text Justification
 
 ## Two Pointers
