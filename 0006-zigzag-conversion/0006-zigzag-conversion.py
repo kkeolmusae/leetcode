@@ -1,6 +1,6 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        l = defaultdict(str)
+        l = defaultdict(list)
         lidx = 0
         go_down = True
 
@@ -8,14 +8,17 @@ class Solution:
             return s
 
         for idx in range(len(s)):
-            l[lidx] += s[idx]  # 문자 넣기
+            l[lidx].append(s[idx])  # 문자 추가하기
             lidx = lidx + 1 if go_down else lidx - 1
 
-            if lidx >= numRows or lidx < 0:  # 끝을 넘어갔으면
-                lidx = lidx + 2 if not go_down else lidx - 2  # 2칸 +- 해서 직전배열로 이동
-                go_down = False if go_down else True  # 방향 전환
+            if lidx >= numRows or lidx < 0:  # 끝에 다달았으면
+                lidx = lidx + 2 if not go_down else lidx - 2
+                if go_down == True:
+                    go_down = False
+                else:
+                    go_down = True
 
         result = ""
-        for idx in range(numRows):  # 문자 합치기
-            result += l[idx]
+        for idx in range(numRows):
+            result += "".join(l[idx])
         return result
