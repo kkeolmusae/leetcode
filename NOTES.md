@@ -1,6 +1,6 @@
 # 풀이
 - Difficulty:  Easy / Medium / Hard
-- Topic:  Heap / Priority Queue
+- Topic:  Two Pointers
 - Elapsed Time:  2m
 - Status:  O (3 times) / X
 - Memo:

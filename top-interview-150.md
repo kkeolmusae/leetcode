@@ -29,7 +29,7 @@
 - [ ] [Hard] Text Justification
 
 ## Two Pointers
-- [ ] [Easy] Valid Palindrome
+- [X] [Easy] Valid Palindrome
 - [ ] [Easy] Is Subsequence
 - [ ] [Medium] Two Sum II - Input Array Is Sorted
 - [ ] [Medium] Container With Most Water
