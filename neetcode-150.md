@@ -139,8 +139,8 @@
 ## 1-D Dynamic Programming
 - [ ] [Easy] Climbing Stairs   	
 - [ ] [Easy] Min Cost Climbing Stairs   	
-- [ ] [Medium] House Robber   	
-- [ ] [Medium] House Robber II   	
+- [X] [Medium] House Robber   	
+- [X] [Medium] House Robber II   	
 - [ ] [Medium] Longest Palindromic Substring   	
 - [ ] [Medium] Palindromic Substrings   	
 - [ ] [Medium] Decode Ways   	

@@ -185,7 +185,7 @@
 
 ## 1D DP
 - [ ] [Easy] Climbing Stairs
-- [ ] [Medium] House Robber
+- [X] [Medium] House Robber
 - [ ] [Medium] Word Break
 - [ ] [Medium] Coin Change
 - [ ] [Medium] Longest Increasing Subsequence

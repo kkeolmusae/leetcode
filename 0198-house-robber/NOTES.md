@@ -1,24 +1,25 @@
 # 풀이
-- LeetCode 75, Medium
-- DP - 1D
-- Time: 6m 45s
-- [2, 1, 1, 2] 케이스 통과못해서 살짝 당황할 뻔 했는데 그려가면서 푸니깐 금방 풀렸음.
+- Difficulty: Medium
+- Topic:  1-D Dynamic Programming
+- Elapsed Time:  6m
+- Status:  O (2 times)
+- Memo: 이제 이정도 단순한 점화식 찾는건 금방하는듯
 
 ## 내 풀이
 ```py
 class Solution:
     def rob(self, nums: List[int]) -> int:
         n = len(nums)
+        if n < 2:  # nums 길이가 2보다 짧으면
+            return nums[n - 1]  # 첫번째 값 리턴
+
         dp = [0] * n
-
-        if n < 3: # 배열 길이가 1,2 면 둘중 큰 값이 정답
-            return max(nums)
-
         dp[0] = nums[0]
-        dp[1] = max(nums[1], nums[0]) # 0번째랑 1번째랑 둘중에 큰거
+        dp[1] = max(nums[0], nums[1])
+
         for i in range(2, n):
-            dp[i] = max(dp[i - 2] + nums[i], dp[i - 1])  # 현재랑 이전전꺼 합친거 vs 이전꺼 
-        return dp[n - 1]
+            dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
+        return dp[-1]
 ```
 
 ## 다른 풀이

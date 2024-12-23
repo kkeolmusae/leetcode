@@ -1,37 +1,31 @@
 # 풀이
-- NeetCode 150, Medium
-- DP 
-- Time: X
-- 배열이 사실 원형으로 이어져 있는 문제를 풀때 접근 방법은 생각이 났는데 (앞->뒤, 뒤->앞 두번 계산해서 풀거나, 배열 뒤에 똑같은 배열을 붙여서 푸는 방식), 방법이 안떠올라서 설명보고 이해함
+- Difficulty: Medium
+- Topic:  1-D Dynamic Programming
+- Elapsed Time:  2m
+- Status:  O 
+- Memo: 배열이 원형으로 이루어져있을때 배열을 두개 붙이거나 혹은 (앞 -> 뒤), (뒤 -> 앞) 두번 처리하는 방법에 대해서 생각을 해보자
 
 ## 내 풀이
-- robs 코드는 이전에 house robber 1 에서 사용한코드 그대로 썼고, 결과 return 할때 max(첫번째 집을 제외하고 앞->뒤, 마지막 집 제외하고 뒤 -> 앞) 으로 품. 
-- 첫번째 집을 제외하는 이유는 첫번째 집을 선택하지 않고 마지막 집을 선택하는 케이스에 대응한 것이고,
-- 마지막 집을 제외하는 이유는 마지막 집을 선택하지 않고 첫번째 집을 선택하는 케이스에 대응하기 위함.
+rob1 함수는 0198 의 함수를 그대로 사용했다.
 ```py
 class Solution:
-    def robs(self, nums: List[int]) -> int:
+    def rob1(self, nums: List[int]) -> int:
         n = len(nums)
+        if n < 2:
+            return nums[n - 1]
+
         dp = [0] * n
-
-        if n < 3:
-            return max(nums)
-
         dp[0] = nums[0]
-        dp[1] = max(nums[1], nums[0])
+        dp[1] = max(nums[0], nums[1])
+
         for i in range(2, n):
-            dp[i] = max(dp[i - 2] + nums[i], dp[i - 1])
-        return dp[n - 1]
+            dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
+        return dp[-1]
 
     def rob(self, nums: List[int]) -> int:
-        n = len(nums)
-        if n <= 2:
+        if len(nums) == 1:
             return max(nums)
-
-        # 첫 번째 집을 털고 마지막 집을 털지 않는 경우와,
-        # 첫 번째 집을 털지 않고 마지막 집을 털 수 있는 경우 중 최대 금액 선택
-        # 외냐하면 첫번째집이랑 마지막 집이 이어져있다는 조건이 있기 떄문
-        return max(self.robs(nums[1:]), self.robs(list(reversed(nums))[1:]))
+        return max(self.rob1(nums[1:]), self.rob1(list(reversed(nums))[1:]))
 ```
 
 ## 다른 풀이

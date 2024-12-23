@@ -1,6 +1,6 @@
 # 풀이
 - Difficulty:  Easy / Medium / Hard
-- Topic:  Two Pointers
+- Topic:  1-D Dynamic Programming
 - Elapsed Time:  2m
 - Status:  O (3 times) / X
 - Memo:
