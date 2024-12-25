@@ -1,31 +1,28 @@
 # 풀이
-- LeetCode 75, Medium
-- Two Pointers
-- Time: 4m 20s
-- 지난번에 풀었던 문제인데 그냥 다시 풀어봄.
+- Difficulty:  Medium
+- Topic:  Two Pointers
+- Elapsed Time:  6m
+- Status:  O (3 times)
+- Memo: 예전에 풀어봤던거라 그런지 별로 안어려웠음.
 
-## 내 코드
-1. 좌우에서 한칸씩 중앙으로 당기면서 최대 너비를 갱신하고,
-2. (왼쪽 길이 < 오른쪽 길이) 이면 왼쪽을 오른쪽으로 이동하고, 
-3. (오른쪽 길이 < 왼쪽 길이) 이면 오른쪽을 왼쪽으로 이동하는 방식으로 움직이면서 최대값을 구함
+## 내 풀이
 ```py
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        result = 0
-        l_idx = 0
-        r_idx = len(height) - 1
+        lidx = 0
+        ridx = len(height) - 1
+        amount = 0
 
-        while l_idx < r_idx:
-            w = r_idx - l_idx  # 가로
-            h = min(height[l_idx], height[r_idx])  # 세로
-            result = max(result, w * h)  # 최대 넓이 갱신
-
-            if height[l_idx] < height[r_idx]:  # 왼쪽이 짧으면 왼쪽꺼 이동해보기
-                l_idx += 1
-            else:  # 아니면 오른쪽꺼 이동
-                r_idx -= 1
-
-        return result
+        while lidx < ridx:
+            h = min(height[lidx], height[ridx])  # 둘중 낮은게 높이
+            amount = max(h * (ridx - lidx), amount)  # amount 갱신
+            
+            # 길이 더 짧은거 옮기기
+            if height[lidx] < height[ridx]:
+                lidx += 1
+            else:
+                ridx -= 1
+        return amount
 ```
 
 ## 다른 풀이

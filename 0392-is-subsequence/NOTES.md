@@ -1,10 +1,12 @@
 # 풀이
-- LeetCode 75, Easy
-- Two Pointers
-- Time: 7m
-- 딱히 어려움은 없었음. 
+- Difficulty:  Easy
+- Topic:  Two Pointers
+- Elapsed Time:  5m
+- Status:  O (2 times)
+- Memo: 딱히 어려움은 없었음. 첫번째 풀었을때랑 두번째 풀었을때랑 좀 다르게  품
 
 ## 내 풀이
+첫번째
 ```py
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
@@ -24,6 +26,31 @@ class Solution:
                 return True
 
         return False  # tidx가 범위를 넘어가서 끝난거면 subsequence 가 아닌거라 False
+```
+
+```py
+두번째
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        i = 0
+        j = 0
+
+        n = len(s)
+        m = len(t)
+
+        if n > m:  # s 가 더 길면 False
+            return False
+
+        while i <= n - 1 and j <= m - 1:  # 둘중 하나라도 끝을 넘어가면 끝
+            if s[i] == t[j]:  # 같으면
+                i += 1
+                j += 1
+            else:
+                j += 1  # j 만 칸 뒤로 가기
+
+        if i == n:
+            return True
+        return False
 ```
 
 ## 다른 풀이
