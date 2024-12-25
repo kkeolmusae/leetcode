@@ -1,17 +1,21 @@
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
-        if len(s) == 0:
+        i = 0
+        j = 0
+
+        n = len(s)
+        m = len(t)
+
+        if n > m:
+            return False
+
+        while i <= n - 1 and j <= m - 1:
+            if s[i] == t[j]:  # 같으면
+                i += 1
+                j += 1
+            else:
+                j += 1  # j 만 칸 뒤로 가기
+
+        if i == n:
             return True
-        sidx = 0
-        tidx = 0
-
-        while tidx < len(t):
-            if s[sidx] != t[tidx]:
-                tidx += 1
-                continue
-            sidx += 1
-            tidx += 1
-
-            if sidx >= len(s):
-                return True
         return False
