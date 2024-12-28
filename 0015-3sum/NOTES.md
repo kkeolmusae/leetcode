@@ -1,50 +1,52 @@
-# 풀이 
-## 내 풀이. 
-- 시간복잡도: O(nlogn + n + m^2)
+# 풀이
+- Difficulty:  Medium
+- Topic:  Two Pointers
+- Elapsed Time:  13m
+- Status:  O (2 times)
+- Memo: 일단 풀긴 풀었는데.... Two Pointer 로 풀지 않았고 코드가 좀 비효율적인 듯 하다. 그래서 다른 풀이 보고 다시 풀었다. 제일 마지막으로 푼 방식대로 푸는 연습을 좀 해야할듯.
+
+## 내 풀이
 ```py
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-      dic = {}
-      nums.sort() # O(nlogn)
-      
-      for num in nums: # 같은 숫자라 여러개 있을 수 있어서 숫자별로 개수를 저장함 O(n)
-        if num not in dic: 
-          dic[num] = 1
-        else:
-          dic[num] += 1
-      
-      s = set() # 중복된 조합을 방지하기 위함
-      result = []
-      
-      # O(m^2)
-      for i in dic:
-        for j in dic:
-          pick = (i + j) * -1
-          if pick in dic: # 두 값을 더하고 -1을 곱한 값이 dic에 있으면 => 세 숫자를 더했을떄 0 임
-            if i == j and j == pick and dic[i] < 3: # 다 같은데 개수가 안맞는 경우
-              continue
-            
-            if i == j and j != pick and dic[i] < 2: # i == j != pick 이면 2개가 있어야함
-              continue
-            
-            if j == pick and i != j and dic[j] < 2: # i != j == pick 이면 2개가 있어야함
-              continue
-            
-            if i == pick and i != j and dic[i] < 2: # i == pick != j 이면 2개가 있어야함
-              continue
-            
-            sorted_arr = sorted([i, j, pick])
-            if tuple(sorted_arr) not in s:
-              result.append(sorted_arr)
-              s.add(tuple(sorted_arr))
+        nums.sort()
 
-        
-      return result
+        # 가장 작은 숫자가 0 보다 크면 0을 만들 수 없기에 빈 배열 리턴
+        if nums[0] > 0:
+            return []
+
+        result = []
+
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]:  # 중복된 숫자는 건너뛰기
+                continue
+            self.twoSum(i, nums, result)
+
+        return result
+
+    def twoSum(
+        self, i: int, nums: List[int], result: List[List[int]]
+    ) -> List[List[int]]:
+        lo, hi = i + 1, len(nums) - 1
+        while lo < hi:
+            sum = nums[i] + nums[lo] + nums[hi]
+            if sum < 0:
+                lo += 1
+            elif sum > 0:
+                hi -= 1
+            else:
+                result.append([nums[i], nums[lo], nums[hi]])
+                while lo < hi and nums[lo] == nums[lo + 1]:  # 중복된 숫자는 건너뛰기
+                    lo += 1
+                while lo < hi and nums[hi] == nums[hi - 1]:  # 중복된 숫자는 건너뛰기
+                    hi -= 1
+                lo += 1
+                hi -= 1
 ```
 
 ## 다른 풀이
 
-### Two Pointer
+### Approach 1: Two Pointers
 - 시간 복잡도: 
 ```py
 class Solution:
@@ -75,7 +77,7 @@ class Solution:
                     lo += 1
 ```
 
-### Hashset
+### Approach 2: Hashset
 ```py
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -102,7 +104,7 @@ class Solution:
             j += 1
 ```
 
-### No Sort
+### Approach 3: "No-Sort"
 ```py
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
