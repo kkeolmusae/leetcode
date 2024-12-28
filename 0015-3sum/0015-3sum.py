@@ -6,40 +6,30 @@ class Solution:
         if nums[0] > 0:
             return []
 
-        dic = defaultdict(int)
-        for n in nums:
-            dic[n] += 1
-
-        if len(dic) == 1 and dic[0] >= 3:
-            return [[0, 0, 0]]
-
-        s = set()
         result = []
 
         for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
-                a, b = nums[i], nums[j]
-                c = 0 - (nums[i] + nums[j])
-
-                if c not in dic:
-                    continue
-
-                if a == b and b == c and dic[c] < 3:
-                    continue
-
-                if a == b and b != c and dic[c] < 2:
-                    continue
-
-                if a == c and a != b and dic[a] < 2:
-                    continue
-
-                if b == c and a != b and dic[b] < 2:
-                    continue
-
-                tmp = sorted([a, b, c])  # 정렬해서 중복 제거
-
-                if tuple(tmp) not in s:
-                    result.append(tmp)
-                    s.add(tuple(tmp))
+            if i > 0 and nums[i] == nums[i - 1]:  # 중복된 숫자는 건너뛰기
+                continue
+            self.twoSum(i, nums, result)
 
         return result
+
+    def twoSum(
+        self, i: int, nums: List[int], result: List[List[int]]
+    ) -> List[List[int]]:
+        lo, hi = i + 1, len(nums) - 1
+        while lo < hi:
+            sum = nums[i] + nums[lo] + nums[hi]
+            if sum < 0:
+                lo += 1
+            elif sum > 0:
+                hi -= 1
+            else:
+                result.append([nums[i], nums[lo], nums[hi]])
+                while lo < hi and nums[lo] == nums[lo + 1]:  # 중복된 숫자는 건너뛰기
+                    lo += 1
+                while lo < hi and nums[hi] == nums[hi - 1]:  # 중복된 숫자는 건너뛰기
+                    hi -= 1
+                lo += 1
+                hi -= 1
