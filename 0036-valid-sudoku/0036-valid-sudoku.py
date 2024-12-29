@@ -1,58 +1,48 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        def checkRow(rows):
-            check = defaultdict(bool)
-            
-            for r in rows:
-                if r == ".":
+        # 가로, 세로, 3x3 사각형을 모두 확인해야 함
+        SIZE = 9
+
+        def checkRow(row: int) -> bool:
+            rowSet = set()
+            for col in range(SIZE):
+                if board[row][col] == ".":
                     continue
-                
-                if r not in check:
-                    check[r] = True
-                else:
+                if board[row][col] in rowSet:
                     return False
+                rowSet.add(board[row][col])
             return True
-        
-        def checkCol(board, idx):
-            check = defaultdict(bool)
-            
-            for row in board:
-                col = row[idx]
-                if col == ".":
+
+        def checkCol(col: int) -> bool:
+            colSet = set()
+            for row in range(SIZE):
+                if board[row][col] == ".":
                     continue
-                
-                if col not in check:
-                    check[col] = True
-                else:
+                if board[row][col] in colSet:
                     return False
+                colSet.add(board[row][col])
             return True
-        
-        def check_box(board, x, y):
-            dxdy = [(0,0), (0,1), (1,1), (1,0), (1,-1), (0,-1), (-1, -1), (-1,0), (-1, 1)]
-            
-            check = defaultdict(bool)
-            for dx, dy in dxdy:
-                num = board[dx + x][dy + y]
-                if num == ".":
-                    continue
-                
-                if num not in check:
-                    check[num] = True
-                else:
+
+        def checkSquare(row: int, col: int) -> bool:
+            squareSet = set()
+            for i in range(row, row + 3):
+                for j in range(col, col + 3):
+                    if board[i][j] == ".":
+                        continue
+                    if board[i][j] in squareSet:
+                        return False
+                    squareSet.add(board[i][j])
+            return True
+
+        for i in range(SIZE):
+            if not checkRow(i):  # 가로 체크
+                return False
+            if not checkCol(i):  # 세로 체크
+                return False
+
+        for i in range(0, 9, 3):
+            for j in range(0, 9, 3):
+                # 0, 0 / 0, 3 / 0, 6 / 3, 0 / 3, 3 / 3, 6 / 6, 0 / 6, 3 / 6, 6 체크
+                if not checkSquare(i, j):
                     return False
-            return True
-        
-        for idx in range(len(board)):
-            if not checkRow(board[idx]):
-                return False
-        for idx in range(len(board)):
-            if not checkCol(board, idx):
-                return False
-        for x, y in [(1,1), (1,4), (1,7), (4,1), (4,4), (4,7), (7,1), (7,4), (7,7)]:
-            if not check_box(board, x, y):
-                return False
         return True
