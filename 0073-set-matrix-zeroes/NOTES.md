@@ -1,27 +1,28 @@
 # 풀이
-- Medium
-- Matrix
-- Time: 11m 20s
-- 별로 안어려웠음. 가로세로 헷갈린거 빼고 수월했음
+- Difficulty:  Medium
+- Topic:  Matrix
+- Elapsed Time:  8m
+- Status:  O (2 times)
+- Memo: 안어려웠음. 가로세로 헷갈린거 빼고 수월했음
 
 ## 내 풀이
 ```py
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
-        garo = len(matrix[0])
-        sero = len(matrix)
+        rows = len(matrix)  # 행의 개수
+        cols = len(matrix[0])  # 열의 개수
 
-        zero = set()  # 0 위치 저장
-        for i in range(sero):
-            for j in range(garo):
-                if matrix[i][j] == 0:
-                    zero.add((i, j))
+        zero = set()  # 0의 좌표를 저장할 집합
+        for i in range(rows):  # 행 순회
+            for j in range(cols):  # 열 순회
+                if matrix[i][j] == 0:  # 0인 경우
+                    zero.add((i, j))  # 좌표 저장
 
-        for i, j in zero:
-            for x in range(garo):  # 가로줄 0처리
-                matrix[i][x] = 0
-            for x in range(sero):  # 세로줄 0처리
-                matrix[x][j] = 0
+        for i, j in zero:  # 0의 좌표를 순회
+            for idx in range(rows):  # 해당 열을 0으로 설정
+                matrix[idx][j] = 0
+            for idx in range(cols):  # 해당 행을 0으로 설정
+                matrix[i][idx] = 0
 ```
 
 ## 다른 풀이

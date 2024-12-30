@@ -1,26 +1,27 @@
 # 풀이
-- Medium
-- Matrix
-- Time: 5m?
-- 이전에 배열을 회전하는걸 해본적이 있어서 그 코드 그대로 가져다 씀. 이런건 외워두는게 좋을듯함.
+- Difficulty: Medium
+- Topic: Matrix
+- Elapsed Time:  10m
+- Status:  O (2 times)
+- Memo: 배열을 회전시키는 코드를 가져다 사용함. for 문을 어디까지 돌릴지에 대한 이해와 배열을 회전시키는 방법만 알면 금방 풀리는 문제
 
 ## 내 풀이
-문제에서 새로운 배열을 할당하지말고 기존 배열 그대로 사용하라고 해서 기존 배열을 deep copy해서 해결함
+처음 풀었을때는 새로운 배열을 할당하지 않고 하는 방법이 떠오르지 않았는데, 이번에는 새 배열 할당 안하고 품
 ```py
-import copy
-from typing import List
-
-
 class Solution:
 
     def rotate(self, matrix: List[List[int]]) -> None:
 
-        n = len(matrix)  # 행 길이 계산
-        m = len(matrix[0])  # 열 길이 계산
-        temp = copy.deepcopy(matrix)  # 임시 배열
-        for i in range(n):
-            for j in range(m):
-                matrix[j][n - i - 1] = temp[i][j]
+        n = len(matrix)  # 행렬의 크기 계산 (nxn 행렬)
+        for i in range(n // 2 + n % 2):  # 바깥쪽에서 안쪽으로 이동 (반만 순회)
+            for j in range(n // 2):  # 열의 절반만 순회 (나머지는 대칭적으로 처리)
+                # 4개의 값을 회전하며 교환
+                tmp = matrix[j][n - i - 1]  # 오른쪽 위 값을 임시 저장
+                matrix[j][n - i - 1] = matrix[i][j]  # 왼쪽 위 값을 오른쪽 위로 이동
+                matrix[i][j] = matrix[n - j - 1][i]  # 왼쪽 아래 값을 왼쪽 위로 이동
+                matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1]  # 오른쪽 아래 값을 왼쪽 아래로 이동
+                matrix[n - i - 1][n - j - 1] = tmp  # 임시 저장한 값을 오른쪽 아래로 이동
+
 ```
 
 ## 다른 풀이
@@ -65,8 +66,4 @@ class Solution:
                     matrix[i][-j - 1],
                     matrix[i][j],
                 )
-```
-
-### Approach 3:
-```py
 ```
