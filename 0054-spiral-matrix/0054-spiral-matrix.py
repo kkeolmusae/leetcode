@@ -1,32 +1,23 @@
-from typing import List
-
-
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        height = len(matrix[0]) # 세로
-        width = len(matrix) # 가로
-    
-        memory = set()
-        
-        start, end = 0, 0
         result = []
-        
-        direction = 0
-        d = [
-            [0, 1], # 동
-            [1, 0], # 남
-            [0, -1], # 서
-            [-1, 0], # 북 
-        ]
-        
-        while len(result) != height * width:
-            result.append(matrix[start][end])
-            memory.add((start, end))
-            
-            nx, ny = start + d[direction][0], end + d[direction][1]
-            if (nx,ny) in memory or nx <0 or ny< 0 or nx >= width or ny >= height: # 방문한적 있거나 배열 범위 벗어나면 방향 전환
-                direction = (direction + 1) % 4
-                nx, ny = start + d[direction][0], end + d[direction][1]
-            start, end = nx, ny
-        
+        check = set()
+        n = len(matrix[0])  # 가로
+        m = len(matrix)  # 세로
+
+        total = n * m  # 전체 숫자 개수
+        x, y = 0, 0
+
+        direction = 0  # 방향 (처음에는 dxdy[0] 오른쪽)
+        dxdy = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # 오 아 왼 위 방향으로 회전
+
+        while total:
+            result.append(matrix[x][y])  # 숫자 저장
+            total -= 1
+            check.add((x, y))
+            nx, ny = x + dxdy[direction % 4][0], y + dxdy[direction % 4][1]
+            if nx >= m or nx < 0 or ny < 0 or ny >= n or (nx, ny) in check:
+                direction += 1
+                nx, ny = x + dxdy[direction % 4][0], y + dxdy[direction % 4][1]
+            x, y = nx, ny
         return result
