@@ -11,8 +11,6 @@ class Solution:
     ]  # 오 아 왼 위 방향으로 회전
 
     def gameOfLife(self, board: List[List[int]]) -> None:
-        dead_cell = []
-        life_cell = []
         col = len(board[0])
         row = len(board)
         mem = defaultdict(list)
