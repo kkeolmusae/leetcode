@@ -1,6 +1,6 @@
 # 풀이
 - Difficulty:  Easy / Medium / Hard
-- Topic:  1-D Dynamic Programming
+- Topic:  Hashmap
 - Elapsed Time:  2m
 - Status:  O (3 times) / X
 - Memo:
