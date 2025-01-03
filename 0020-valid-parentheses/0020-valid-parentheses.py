@@ -1,18 +1,23 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
         open = ["(", "[", "{"]
         close = [")", "]", "}"]
+        if len(s) == 1:
+            return False
+
+        q = []
         for st in s:
             if st in open:
-                stack.append(st)
+                q.append(st)
             else:
-                if len(stack) == 0:
+                if not q:
                     return False
-                prev = stack.pop()
-                if (st == close[0] and prev != open[0]) or (st == close[1] and prev != open[1]) or (st == close[2] and prev != open[2]):
+                op = q.pop()
+                if op == open[0] and st != close[0]:
                     return False
-        
-        if len(stack) != 0:
-            return False
-        return True
+                if op == open[1] and st != close[1]:
+                    return False
+                if op == open[2] and st != close[2]:
+                    return False
+
+        return True if not q else False
