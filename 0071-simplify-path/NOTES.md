@@ -1,26 +1,27 @@
 # 풀이
-- Medium
-- Stack
-- Time: 10m
-- 쉬운문제인데 오랜만에 풀어서 시간이 오래 걸렸다.
+- Difficulty:  Medium
+- Topic:  Stack
+- Elapsed Time:  5m
+- Status:  O (3 times)
+- Memo: 쉽게 풀었다
 
 ## 내 풀이
 ```py
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        stack = []
+        path = path.split("/")
 
-        for st in path.split("/"):
-            if st == "": # 빈값이면 패스
+        result = []
+        for p in path:
+            if p == "." or p == "":
                 continue
-            
-            # .. 이면 한칸 위로 가야하니깐 pop
-            if st == ".." and len(stack): 
-                stack.pop()
-            elif st != ".." and st != ".":
-                # .. 이나 . 이 아니면 stack에 넣기
-                stack.append(st)
-        return "/" + "/".join(stack)
+
+            if p == "..":
+                if result:
+                    result.pop()
+            else:
+                result.append(p)
+        return "/" + "/".join(result)
 ```
 
 ## 다른 풀이
