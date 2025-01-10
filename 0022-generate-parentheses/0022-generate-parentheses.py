@@ -1,30 +1,21 @@
 class Solution:
-    def check(self, n: int, st: str) -> bool:
-        left = 0
-        right = 0
-
-        for s in st:
-            if s == "(":
-                left += 1
-            else:
-                right += 1
-
-            if right > left or left > n or right > n:
-                return False
-        return right == n
-
     def generateParenthesis(self, n: int) -> List[str]:
         answer = []
-        queue = deque([""])
 
-        while queue:
-            curr = queue.popleft()
+        def backTracking(curr: List[str], left_count, right_count):
+            if len(curr) == n * 2:  # 길이 다 채운 경우
+                answer.append("".join(curr))
+                return
 
-            if len(curr) == n * 2:
-                if self.check(n, curr):
-                    answer.append(curr)
-                continue
-            queue.append(curr + "(")
-            queue.append(curr + ")")
+            if left_count < n:  # 왼쪽 덜 채운 경우
+                curr.append("(")  # 왼쪽 추가하고
+                backTracking(curr, left_count + 1, right_count)
+                curr.pop()
 
+            if right_count < left_count:  # 오른쪽 덜 채운 경우
+                curr.append(")")  # 오른쪽 추가하고
+                backTracking(curr, left_count, right_count + 1)  # 다음으로 넘어가기
+                curr.pop()
+
+        backTracking([], 0, 0)
         return answer
