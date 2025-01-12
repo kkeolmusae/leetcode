@@ -4,15 +4,13 @@ class Solution:
         n = len(candidates)
 
         result = []
-        mem = set()
 
         def backtracking(curr: List[int], currIdx: int):
             s = sum(curr)
-            if s > target or str(curr) in mem:  # 종료
+            if s > target:  # 종료
                 return
-            elif s == target and str(curr) not in mem:
+            elif s == target:
                 result.append(curr[:])
-                mem.add(str(curr))
                 return
 
             for i in range(currIdx, n):
