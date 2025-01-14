@@ -1,40 +1,31 @@
 class Solution:
-    def getArray(self, digits: str, i: int, res: list, digitToChars: list) -> list:
-        # 끝난 경우 (자릿수 오버되는 경우)
-        if len(digits) <= i:
-            return res
+    def letterCombinations(self, digits: str) -> List[str]:
+        result = []
+        if not len(digits):
+            return result
 
-        digit = int(digits[i])
-        res2 = []
+        pad = {
+            "2": ["a", "b", "c"],
+            "3": ["d", "e", "f"],
+            "4": ["g", "h", "i"],
+            "5": ["j", "k", "l"],
+            "6": ["m", "n", "o"],
+            "7": ["p", "q", "r", "s"],
+            "8": ["t", "u", "v"],
+            "9": ["w", "x", "y", "z"],
+        }
 
-        if not len(res):  # 최초
-            for char in digitToChars[digit]:
-                res2.append(char)
-        else:  # 이전 결과에 새로운 문자 조합해서 새 결과 리스트 생성
-            for elem in res:
-                for char in digitToChars[digit]:
-                    res2.append(elem + char)
+        def backtracking(curr: List[str], idx: int):
+            if len(curr) == len(digits):
+                result.append("".join(curr[:]))
+                return
 
-        # 다음 자리로 재귀 호출
-        return self.getArray(digits, i + 1, res2, digitToChars)
+            num = digits[idx]
 
-    def letterCombinations(self, digits: str) -> list:
-        if not digits:
-            return []
+            for c in pad[num]:
+                curr.append(c)
+                backtracking(curr, idx + 1)
+                curr.pop()
 
-        # 숫자와 문자 매핑 테이블
-        digitToChars = [
-            [],
-            [],
-            ["a", "b", "c"],
-            ["d", "e", "f"],
-            ["g", "h", "i"],
-            ["j", "k", "l"],
-            ["m", "n", "o"],
-            ["p", "q", "r", "s"],
-            ["t", "u", "v"],
-            ["w", "x", "y", "z"],
-        ]
-
-        res = []
-        return self.getArray(digits, 0, res, digitToChars)
+        backtracking([], 0)
+        return result
