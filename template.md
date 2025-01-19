@@ -1,6 +1,6 @@
 # 풀이
 - Difficulty:  Easy / Medium / Hard
-- Topic:  Hashmap
+- Topic:  Heap / Priority Queue
 - Elapsed Time:  2m
 - Status:  O (3 times) / X
 - Memo:
