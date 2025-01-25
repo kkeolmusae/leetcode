@@ -1,8 +1,11 @@
 # 풀이
-task 관리 문제. tasks라는 작업 목록과 n이라는 두 작업 간의 최소 휴식시간이 주어졌을 때, 작업을 완료하는 데 필요한 최소 시간을 계산하는 문제
+- Difficulty:  Medium
+- Topic:  Heap / Priority Queue
+- Elapsed Time:  30m
+- Status:  X
+- Memo:  풀긴풀었는데 전에 푼거 보고 풀어서... 다시 풀어봐야할듯
 
 ## 내 풀이
-내 풀이 보다는,,, 솔루션을 보고 다시 풀어본 문제임
 ```py
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
@@ -38,7 +41,7 @@ class Solution:
 ```
 
 ## 다른 풀이
-### 1. Using Priority Queue / Max Heap
+### Approach 1: Using Priority Queue / Max Heap
 ```py
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
@@ -76,34 +79,41 @@ class Solution:
         return time
 ```
 
-### 2: Filling the Slots and Sorting
+### Approach 2: Filling the Slots and Sorting
 ```py
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-        # Create a frequency array to keep track of the count of each task
+        # 각 작업의 빈도를 저장할 배열을 생성한다. 
+        # 알파벳은 총 26개이므로 크기가 26인 배열을 준비한다.
         freq = [0] * 26
         for task in tasks:
+            # 작업의 알파벳에 해당하는 인덱스를 증가시킨다.
             freq[ord(task) - ord('A')] += 1
 
-        # freq 배열을 오름차순으로 정렬한다. 이렇게 하면 빈도가 높은 작업이 뒤쪽에 위치하게 된다.
+        # freq 배열을 오름차순으로 정렬한다. 
+        # 이렇게 하면 빈도가 높은 작업이 배열의 끝부분에 위치하게 된다.
         freq.sort()
 
-        # 가장 빈도가 높은 작업을 기준으로 계산을 진행한다. 이 빈도는 freq[25] - 1로 계산된다. 여기서 -1을 한 이유는 작업 사이에 삽입해야 할 빈 슬롯을 계산하기 위해, 작업이 한 번 처리된 상태를 기준으로 하기 때문이다.
+        # 가장 높은 빈도를 가진 작업을 기준으로 계산한다.
+        # freq[25]는 가장 높은 빈도를 나타내며, -1을 하는 이유는 작업이 한 번 처리된 후 
+        # 남은 빈 슬롯의 개수를 계산하기 위함이다.
         max_freq = freq[25] - 1
 
-        # Calculate the number of idle slots that will be required
+        # 가장 빈도가 높은 작업들 사이에 필요한 idle 슬롯 수를 계산한다.
         idle_slots = max_freq * n
-        # Iterate over the frequency array from the second highest frequency to the lowest frequency
 
-        for i in range(24, -1, -1):
-            # Subtract the minimum of the maximum frequency and the current frequency from the idle slots
+        # 빈도가 높은 순서로 작업을 처리하며 idle 슬롯을 채운다.
+        for i in range(24, -1, -1):  # 가장 높은 빈도를 제외한 나머지 빈도를 탐색
+            # 현재 작업이 차지할 수 있는 idle 슬롯을 빼준다.
             idle_slots -= min(max_freq, freq[i])
 
-        # If there are any idle slots left, add them to the total number of tasks
+        # idle 슬롯이 남아 있다면 이를 전체 작업 수에 더하고,
+        # 그렇지 않다면 단순히 작업의 개수만 반환한다.
         return idle_slots + len(tasks) if idle_slots > 0 else len(tasks)
+
 ```
 
-## 3: Greedy Approach
+### Approach 3: Greedy Approach
 - 가장 빈도가 높은 작업을 기준으로 작업 사이에 들어가는 슬롯의 개수와 길이를 계산.
 - 나머지 작업들로 빈 슬롯을 채우고, 부족한 부분은 대기시간으로 채움.
 - 최종적으로 총 작업 수와 추가 대기 시간을 합산하여 최소 시간을 구함.
