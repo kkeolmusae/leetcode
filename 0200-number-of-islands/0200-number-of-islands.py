@@ -1,28 +1,36 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        q = deque()  # 땅 위치
-        cnt = 0
+        answer = 0
+        width = len(grid[0])
+        height = len(grid)
 
-        garo = len(grid[0])
-        sero = len(grid)
+        dxdy = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # 오 아 왼 위 방향으로 회전
 
-        # 오 아 왼 위 방향으로 회전
-        dxdy = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        def bfs(point):
+            y, x = point
+            q = deque()
+            q.append((y, x))
 
-        for i in range(sero):
-            for j in range(garo):
-                if grid[i][j] == "1":
-                    q.append((i, j))
-                    cnt += 1
-                    while q:
-                        x, y = q.popleft()
-                        if grid[x][y] == "1":  # 땅인 경우에
-                            grid[x][y] = "2"  # 확인처리
-                            for idx in range(4):  # 동서남북 체크
-                                nx = x + dxdy[idx][0]
-                                ny = y + dxdy[idx][1]
+            while q:
+                y, x = q.popleft()
 
-                                if nx >= 0 and nx < sero and ny >= 0 and ny < garo:
-                                    if grid[nx][ny] == "1":  # 주변에 땅이 있으면
-                                        q.append((nx, ny))  # q 에 넣어둠
-        return cnt
+                for dy, dx in dxdy:
+                    nx = dx + x
+                    ny = dy + y
+                    if (
+                        0 <= nx
+                        and nx < width
+                        and 0 <= ny
+                        and ny < height
+                        and grid[ny][nx] == "1"
+                    ):
+                        # q에 넣기 전에 미리 방문처리를 해둠으로서 q에 필요한 것만 들어가게함 (Memory Limit Exceeded 방지)
+                        grid[ny][nx] = "0"
+                        q.append((ny, nx))
+
+        for h in range(height):
+            for w in range(width):
+                if grid[h][w] == "1":
+                    bfs((h, w))
+                    answer += 1
+        return answer
