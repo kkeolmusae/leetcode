@@ -1,52 +1,41 @@
 # 풀이
-- LeetCode 75, Medium
-- Graphs - BFS
-- Time: 17m 23s
-- 비슷한 유형의 문제를 예전에 백준에서 풀어봤어서 그런지 크게 어렵지 않았음.
+- Difficulty:  Medium
+- Topic:  Graphs
+- Elapsed Time:  10m
+- Status:  O (2 times)
+- Memo:  지난번에 풀어봤던 문제라 금방 품
 
 ## 내 풀이
+지난번에는 checked 라는 변수를 써서 체크한 오렌지를 기록했는데, 이번에는 안쓰고 해결함
 ```py
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        # 0: 빈셀, 1: fresh, 2: rotten
-
-        q = deque()  # 썩은 오렌지 위치 저장
-        fresh_cnt = 0  # 신선한 오렌지 개수 저장
-        result = 0  # 걸린 시간
-
-        garo = len(grid[0])
-        sero = len(grid)
-
+        height = len(grid)
+        width = len(grid[0])
         dxdy = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # 오 아 왼 위 방향으로 회전
-        checked = defaultdict(bool)
 
-        for i in range(sero):
-            for j in range(garo):
-                if grid[i][j] == 2:
-                    q.append((i, j, 0))
-                elif grid[i][j] == 1:
-                    fresh_cnt += 1
+        q = deque()
+        total = 0
+        for h in range(height):
+            for w in range(width):
+                if grid[h][w] == 2:  # 썩은 오렌지
+                    q.append((h, w, 0))
+                elif grid[h][w] == 1:  # 멀쩡한 오렌지
+                    total += 1
 
+        result = 0
         while q:
-            cx, cy, ctime = q.popleft()  # 현재 x,y,time
-            result = max(ctime, result)
-            if checked[(cx, cy)]:  # 확인한적있는 곳이면 패스
-                continue
-            checked[(cx, cy)] = True  # 확인 처리
+            h, w, t = q.popleft()
+            for dy, dx in dxdy:
+                ny = dy + h
+                nx = dx + w
+                if 0 <= ny < height and 0 <= nx < width and grid[ny][nx] == 1:
+                    grid[ny][nx] = 2
+                    q.append((ny, nx, t + 1))
+                    result = max(result, t + 1)
+                    total -= 1
 
-            for dx, dy in dxdy:
-                nx = cx + dx
-                ny = cy + dy
-                if nx >= 0 and nx < sero and ny >= 0 and ny < garo:  # 범위내
-                    if grid[nx][ny] == 1:  # 신선한 과일 발견
-                        grid[nx][ny] = 2  # 감염처리
-                        q.append((nx, ny, ctime + 1))
-                        fresh_cnt -= 1
-
-        if fresh_cnt > 0:  # 신선한게 남아있으면
-            return -1
-        return result
-
+        return result if total == 0 else -1
 ```
 
 ## 다른 풀이

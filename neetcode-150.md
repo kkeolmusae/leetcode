@@ -3,41 +3,41 @@
 - Easy: 28 / Medium: 101 / Hard: 21
 
 ## Array & Hashing
-- [ ] [Easy] Contains Duplicate   	
-- [ ] [Easy] Valid Anagram   	
-- [ ] [Easy] Two Sum   	
-- [ ] [Medium] Group Anagrams   	
-- [ ] [Medium] Top K Frequent Elements   	
-- [ ] [Medium] Encode and Decode Strings   	
-- [ ] [Medium] Product of Array Except Self   	
-- [ ] [Medium] Valid Sudoku   	
+- [X] [Easy] Contains Duplicate   	
+- [X] [Easy] Valid Anagram   	
+- [X] [Easy] Two Sum   	
+- [X] [Medium] Group Anagrams   	
+- [X] [Medium] Top K Frequent Elements   	
+- [X] [Medium] Encode and Decode Strings   	
+- [X] [Medium] Product of Array Except Self   	
+- [X] [Medium] Valid Sudoku   	
 - [X] [Medium] Longest Consecutive Sequence   	
 
 
 ## Two Pointers
-- [ ] [Easy] Valid Palindrome   	
-- [ ] [Medium] Two Sum II Input Array Is Sorted   	
-- [ ] [Medium] 3Sum   	
-- [ ] [Medium] Container With Most Water   	
+- [X] [Easy] Valid Palindrome   	
+- [X] [Medium] Two Sum II Input Array Is Sorted   	
+- [X] [Medium] 3Sum   	
+- [X] [Medium] Container With Most Water   	
 - [ ] [Hard] Trapping Rain Water   	
 
 
 ## Sliding Window 
-- [ ] [Easy] Best Time to Buy And Sell Stock   	
-- [ ] [Medium] Longest Substring Without Repeating Characters   	
+- [x] [Easy] Best Time to Buy And Sell Stock   	
+- [x] [Medium] Longest Substring Without Repeating Characters   	
 - [ ] [Medium] Longest Repeating Character Replacement   	
-- [ ] [Medium] Permutation In String   	
+- [X] [Medium] Permutation In String   	
 - [ ] [Hard] Minimum Window Substring   	
 - [ ] [Hard] Sliding Window Maximum   	
 
 
 ## Stack
-- [ ] [Easy] Valid Parentheses   	
-- [ ] [Medium] Min Stack   	
-- [ ] [Medium] Evaluate Reverse Polish Notation   	
-- [ ] [Medium] Generate Parentheses   	
-- [ ] [Medium] Daily Temperatures   	
-- [ ] [Medium] Car Fleet   	
+- [X] [Easy] Valid Parentheses   	
+- [X] [Medium] Min Stack   	
+- [X] [Medium] Evaluate Reverse Polish Notation   	
+- [X] [Medium] Generate Parentheses   	
+- [X] [Medium] Daily Temperatures   	
+- [X] [Medium] Car Fleet   	
 - [ ] [Hard] Largest Rectangle In Histogram   	
 
 
@@ -94,14 +94,14 @@
 
 
 ## Backtracking
-- [ ] [Medium] Subsets   	
-- [ ] [Medium] Combination Sum   	
-- [ ] [Medium] Permutations   	
-- [ ] [Medium] Subsets II   	
-- [ ] [Medium] Combination Sum II   	
-- [ ] [Medium] Word Search   	
-- [ ] [Medium] Palindrome Partitioning   	
-- [ ] [Medium] Letter Combinations of a Phone Number   	
+- [X] [Medium] Subsets   	
+- [X] [Medium] Combination Sum   	
+- [X] [Medium] Permutations   	
+- [X] [Medium] Subsets II   	
+- [X] [Medium] Combination Sum II   	
+- [X] [Medium] Word Search   	
+- [X] [Medium] Palindrome Partitioning   	
+- [X] [Medium] Letter Combinations of a Phone Number   	
 - [ ] [Hard] N Queens   	
 
 
@@ -112,11 +112,11 @@
 
 
 ## Graphs
-- [ ] [Medium] Number of Islands   	
-- [ ] [Medium] Max Area of Island   	
-- [ ] [Medium] Clone Graph   	
-- [ ] [Medium] Walls And Gates   	
-- [ ] [Medium] Rotting Oranges   	
+- [X] [Medium] Number of Islands   	
+- [X] [Medium] Max Area of Island   	
+- [X] [Medium] Clone Graph   	
+- [X] [Medium] Walls And Gates   	
+- [X] [Medium] Rotting Oranges   	
 - [ ] [Medium] Pacific Atlantic Water Flow   	
 - [ ] [Medium] Surrounded Regions   	
 - [ ] [Medium] Course Schedule   	
