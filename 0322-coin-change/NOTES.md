@@ -1,25 +1,27 @@
 # 풀이
-- Medium
-- DP, DFS
-- Time: X
-- 처음 그리드로 푸는건줄 알고 쉽다고 생각했는데 원래 알고 있던 유형이랑 달랐고, 못품
+- Difficulty:  Medium
+- Topic:  1D DP
+- Elapsed Time:  15m
+- Status:  O 
+- Approach:  작은 문제(dp[a-c])의 해를 이용해 큰 문제(dp[a])를 해결할 수 있다는 생각으로 dp로 접근했다.
+- Memo:  이전에 그리드로 풀려다가 시간초과 발생해서 못풀었던 문제.
 
 ## 내 풀이
 ```py
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        INF = float("inf")  # dp[amount]의 최소값을 구해야하기 때문에 inf로 초기 세팅
-        dp = [INF] * (amount + 1)
+        dp = [math.inf] * (amount + 1)  # dp 초기화
         dp[0] = 0
 
-        coins.sort()  # 오름차순으로 정렬
+        coins.sort()
 
-        for coin in coins:
-            for a in range(coin, amount + 1):  # dp[amount] 까지 해야해서 +1 해줌
-                # dp[a] 를 만드는데 필요한 최소 코인 = min(dp[a], dp[a-coin] + 1)
-                dp[a] = min(dp[a], dp[a - coin] + 1)
+        for c in coins:  # 동전 c를 사용할 수 있는 최소 금액 c부터 시작
+            # 현재 금액 a를 만들기 위해 최소 동전 개수 갱신
+            for a in range(c, amount + 1):
+                # dp[a - c] + 1: a - c원을 만들 수 있다면, c를 추가해서 만들 수 있음
+                dp[a] = min(dp[a], dp[a - c] + 1)
 
-        return dp[amount] if dp[amount] != INF else -1
+        return -1 if dp[amount] == math.inf else dp[amount]
 ```
 
 ## 다른 풀이
