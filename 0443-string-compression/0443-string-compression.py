@@ -1,24 +1,26 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        prev_ch = ""
-        cnt = 0
+        i = 0  # write index
+        cnt = 1
 
-        result = ""
-        for c in chars:
-            if c != prev_ch:
-                result += prev_ch
-                if cnt > 1:
-                    result += str(cnt)
-                prev_ch = c
-                cnt = 1
-            else:
+        for cidx in range(1, len(chars)):
+            if chars[cidx] == chars[cidx - 1]:
                 cnt += 1
+            else:
+                chars[i] = chars[cidx - 1]
+                i += 1
+                if cnt > 1:
+                    for c in str(cnt):
+                        chars[i] = c
+                        i += 1
+                cnt = 1
 
-        result += prev_ch
+        # 마지막 문자 처리
+        chars[i] = chars[-1]
+        i += 1
         if cnt > 1:
-            result += str(cnt)
+            for c in str(cnt):
+                chars[i] = c
+                i += 1
 
-        for idx in range(len(result)):
-            chars[idx] = result[idx]
-
-        return len(result)
+        return i
