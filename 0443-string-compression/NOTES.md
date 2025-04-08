@@ -1,39 +1,45 @@
 # 풀이
-- LeetCode 75, Medium
-- Array / String
-- Time: 22m
-- 풀긴 했는데 좀 이상하게 품
+- Difficulty:  Medium
+- Topic:  Array / String
+- Elapsed Time:  10m
+- Status:  O (2 times)
+- Approach:  in-place (입력 크기에 비례하는 추가 공간을 필요로 하지 않고 입력 데이터 구조 에서 직접 작동) 로 품
+- Memo:  이전에는 추가 공간 할당해서 압축결과 만든다음에 결과를 char 에 넣는 방법으로 대충 풀었는데 이번에는 정정당당하게 in-place 방법으로 해겨함
 
 ## 내 풀이
-문재 조건이 기존 배열(chars)를 활용해서 문자열을 압축하는건데 나는 걍 따로 압축 다 하고 마지막에 업데이트 하는 방법으로 품.
 ```py
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        prev_ch = ""
-        cnt = 0
+        i = 0  # 압축된 결과를 적을 인덱스
+        cnt = 1
 
-        result = ""
-        for c in chars:
-            if c != prev_ch:  # 이전 문자랑 다르면
-                result += prev_ch  # 이전문자 더해주고
-                if cnt > 1:  # 중복된 숫자가 있으면 그 숫자만큼 더해주고
-                    result += str(cnt)
-                prev_ch = c  # 문자 및 중복 카운트 초기화
-                cnt = 1
+        # 첫 문자부터 끝까지 순회
+        for cidx in range(1, len(chars)):
+            if chars[cidx] == chars[cidx - 1]:
+                cnt += 1  # 연속 문자일 경우 count 증가
             else:
-                cnt += 1  # 중복된 문자면 중복 카운트 증가
+                # 연속이 끝났을 때 처리
+                chars[i] = chars[cidx - 1]  # 문자 쓰기
+                i += 1
+                if cnt > 1:
+                    for c in str(cnt):  # count가 2 이상이면 숫자도 문자로 써줌
+                        chars[i] = c
+                        i += 1
+                cnt = 1  # count 초기화
 
-        result += prev_ch  # 나머지 처리
+        # 마지막 문자 그룹 처리
+        chars[i] = chars[-1]
+        i += 1
         if cnt > 1:
-            result += str(cnt)
+            for c in str(cnt):
+                chars[i] = c
+                i += 1
 
-        for idx in range(len(result)):  # 문제 요구사항대로 기존 배열 업데이트
-            chars[idx] = result[idx]
-
-        return len(result)  # 압축한 문자 길이 반환
+        return i  # 압축 후의 길이 반환
 ```
 
 ## 다른 풀이
+### Approach
 뭔가 이런 식의 해답을 원하는 듯 함....
 ```py
 class Solution:
